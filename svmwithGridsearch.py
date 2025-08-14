@@ -17,7 +17,7 @@ X=digit.data
 y=digit.target
 X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.2,random_state=42)
 svc=SVC()
-svm_params={"C":[0.1,1,10],"kernel":["rbf","lineer"],"gamma":["scale","auto"]}
+svm_params={"C":[0.1,1,10],"kernel":["rbf","linear"],"gamma":["scale","auto"]}
 
 grid_search_svm=GridSearchCV(svc, svm_params,cv=5)
 grid_search_svm.fit(X_train,y_train)
@@ -28,8 +28,9 @@ test_score = grid_search_svm.score(X_test, y_test)
 print("Test doğruluğu:", test_score)
 y_pred=grid_search_svm.predict(X_test)
 cm=confusion_matrix(y_test,y_pred)
-dsp=ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=digit.target_names)
+dsp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=range(10))
 dsp.plot(cmap="viridis")
 plt.title("SVM Confusion Matrix")
 plt.show()
+
 
