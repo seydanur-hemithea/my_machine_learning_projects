@@ -26,3 +26,10 @@ print("en iyi score:",grid_search_svm.best_score_)
 
 test_score = grid_search_svm.score(X_test, y_test)
 print("Test doğruluğu:", test_score)
+y_pred=grid_search_svm.predict(X_test)
+cm=confusion_matrix(y_test,y_pred)
+dsp=ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=digit.target_names)
+dsp.plot(cmap="viridis")
+plt.title("SVM Confusion Matrix")
+plt.show()
+
